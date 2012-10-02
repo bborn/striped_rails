@@ -1,0 +1,36 @@
+-title 'Sign Up'
+-content_for :head_start do
+  %meta{ name: 'stripe-key', content: STRIPE_PUBLIC_KEY }
+  = javascript_include_tag "https://js.stripe.com/v1/"
+
+%section.well
+  %header.sign_up_header
+    %h1= 'Subscribe'
+
+  = simple_form_for @user, url: create_subscription_path, method: 'post', html: { class: 'form-vertical', id: 'subscribe' } do |f|
+    .fieldset
+      %legend= 'Account Information'
+      
+      = f.input :full_name, label: "Your name or company name", placeholder: "John Doe"
+      = f.input :subscription_plan_id, collection: @subscription_plans, label_method: :name, value_method: :id
+      = f.input :coupon_code, placeholder: "Have you found a coupon code?"
+      = f.input :card_token, as: :hidden
+    %fieldset
+      %legend= 'Payment Details'
+      -if @user.card_token
+        .alert.alert-success= 'Credit card has been provided.'
+      -else
+        .field
+          = label_tag :card_number, "Credit Card Number"
+          = text_field_tag :card_number, nil, name: nil, maxlength: 16, placeholder: 'Just numbers please'
+        .field
+          = label_tag :card_code, "Security Code on Card (CVV)"
+          = text_field_tag :card_code, nil, name: nil, placeholder: "It's on the back of the card"
+        .field
+          = label_tag :card_month, "Card Expiration"
+          = select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'span2'}
+          = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'span1'}
+        #stripe_error
+          %noscript= 'JavaScript is not enabled and is required for this form. First enable it in your web browser settings.'
+    .form-actions
+      = f.submit 'Sign Up', class: 'btn btn-primary'

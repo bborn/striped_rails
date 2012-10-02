@@ -15,7 +15,6 @@ FactoryGirl.define do
   end
 
   factory :user do |u|
-    u.sequence(:username) {|n| "user#{n}"}
     u.sequence(:email) {|n| "user#{n}@test.com"}
     u.sequence(:full_name) {|n| "User #{n}"}
     is_admin false

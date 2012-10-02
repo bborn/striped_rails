@@ -5,9 +5,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = current_user.home_link('BRAND')    
+      = current_user.home_link('BRAND')
       .nav-collapse
         %ul#pages_menu.nav
           = render @pages
-        %ul#session_control.nav.pull-right
-          %li= current_user.session_control

@@ -9,7 +9,7 @@ unless Page.count > 0
 end
 
 unless User.count > 0
-  user = User.new(username: 'admin', password: '123456', password_confirmation: '123456', email: 'admin@example.com', full_name: 'Service Admin')
+  user = User.new(password: '123456', password_confirmation: '123456', email: 'admin@example.com', full_name: 'Service Admin')
   user.is_admin = true
   user.save
 end

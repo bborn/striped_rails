@@ -1,0 +1,2 @@
+module StripedRails::SessionsHelper
+end

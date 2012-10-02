@@ -1,0 +1,2 @@
+module StripedRails::CouponsHelper
+end

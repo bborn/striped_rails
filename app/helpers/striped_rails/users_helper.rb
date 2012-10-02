@@ -1,0 +1,2 @@
+module StripedRails::UsersHelper
+end

@@ -1,0 +1,14 @@
+-title "#{@user.full_name}'s Account"
+
+= content_tag_for(:section, @user, class: 'well') do
+  %h3= @user.full_name
+  %h3= @user.current_subscription_plan_name
+  %p= "Status: #{@user.current_subscription_status}"
+  %p= "Period: #{@user.current_period}"
+  %p= "Coupon: #{@user.current_coupon}"
+  %p= "Current Overage: #{@user.overage_cost}"
+  %p= "Next Charge: #{@user.next_charge} + Current Overage"
+  %p
+    = link_to 'Edit', edit_user_path(@user)
+    |
+    = link_to 'All', users_path

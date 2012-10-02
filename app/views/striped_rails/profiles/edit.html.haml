@@ -1,0 +1,15 @@
+-title "Edit Profile"
+
+%section.well
+  %header.edit_profile_header
+    %h1= 'Edit Profile'
+
+  = simple_form_for current_user, url: profile_path, method: :put, html: { class: 'form-vertical' } do |f|
+    .fieldset
+      %legend= 'Account Information'
+    
+      = f.input :email, placeholder: "name@domain.com"
+      = f.input :full_name, label: "Your full name or company name", placeholder: "John Doe"
+
+      .form-actions
+        = f.submit 'Save', class: 'btn btn-primary'

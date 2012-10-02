@@ -1,6 +1,6 @@
 class CreateCoupons < ActiveRecord::Migration
   def change
-    create_table :coupons do |t|
+    create_table :striped_rails_coupons do |t|
       t.string :coupon_code
       t.integer :percent_off, default: 0
       t.string :duration
@@ -12,7 +12,7 @@ class CreateCoupons < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :coupons, :coupon_code, :unique => true
-    add_index :coupons, :redeem_by
+    add_index :striped_rails_coupons, :coupon_code, :unique => true
+    add_index :striped_rails_coupons, :redeem_by
   end
 end

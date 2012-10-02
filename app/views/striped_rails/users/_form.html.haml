@@ -1,0 +1,10 @@
+= simple_form_for @user do |f|
+
+  = f.input :password
+  = f.input :password_confirmation
+  = f.input :email
+  = f.input :full_name
+  = f.input :coupon_code
+  = f.input :is_admin
+  .form-actions
+    = f.submit 'Save', disable_with: 'Saving', class: 'btn btn-primary'

@@ -1,6 +1,6 @@
 class CreateSubscriptionPlans < ActiveRecord::Migration
   def change
-    create_table :subscription_plans do |t|
+    create_table :striped_rails_subscription_plans do |t|
       t.string :vault_token
       t.string :name
       t.string :currency
@@ -16,8 +16,8 @@ class CreateSubscriptionPlans < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :subscription_plans, :vault_token, :unique => true
-    add_index :subscription_plans, :amount
-    add_index :subscription_plans, :unavailable
+    add_index :striped_rails_subscription_plans, :vault_token, :unique => true
+    add_index :striped_rails_subscription_plans, :amount
+    add_index :striped_rails_subscription_plans, :unavailable
   end
 end

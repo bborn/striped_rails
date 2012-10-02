@@ -30,12 +30,24 @@ Getting Started
 2. Create any plans and coupons in Stripe.
 3. Create a .env file based on the sample.env.
 4. bundle install
-5. bundle exec rake db:migrate
-6. bundle exec rake db:test:prepare
-7. bundle exec rake db:seed
-8. bundle exec foreman run bundle exec rake stripe:sync (This will sync the plans and coupons you set up on Stripe to your local db. Run whenver you change your plans/coupons on Stripe.)
-9. bundle exec foreman start
-10. open http://localhost:5100 to look around (Note it is 5100 instead of 5000 because Redis is first in the Procfile so Foreman skips to 5100 for the web.)
+5. Add the following fields to your User model:
+  t.string :vault_token
+  t.references :subscription_plan
+  t.references :coupon
+
+  add_index :striped_rails_users, :email, :unique => true
+  add_index :striped_rails_users, :subscription_plan_id
+  add_index :striped_rails_users, :coupon_id
+  add_index :striped_rails_users, :vault_token
+  add_index :striped_rails_users, :created_at
+
+6. Make your User model (or Person, or whatever you call it, include StripedRails::User)
+7. bundle exec rake db:migrate
+8. bundle exec rake db:test:prepare
+9. bundle exec rake db:seed
+10. bundle exec foreman run bundle exec rake stripe:sync (This will sync the plans and coupons you set up on Stripe to your local db. Run whenver you change your plans/coupons on Stripe.)
+11. bundle exec foreman start
+12. open http://localhost:5100 to look around (Note it is 5100 instead of 5000 because Redis is first in the Procfile so Foreman skips to 5100 for the web.)
 
 Quirks
 ------

@@ -1,6 +1,6 @@
 class CreatePages < ActiveRecord::Migration
   def change
-    create_table :pages do |t|
+    create_table :striped_rails_pages do |t|
       t.string :title
       t.string :slug
       t.text :content
@@ -8,7 +8,7 @@ class CreatePages < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :pages, :slug, :unique => true
-    add_index :pages, :menu_order
+    add_index :striped_rails_pages, :slug, :unique => true
+    add_index :striped_rails_pages, :menu_order
   end
 end

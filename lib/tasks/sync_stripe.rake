@@ -1,7 +1,7 @@
 namespace :stripe do
   desc 'Sync the information on plans and coupons from Stripe.'
   task sync: :environment do
-    SubscriptionPlan.update_stripe_plans
-    Coupon.update_stripe_coupons
+    StripedRails::SubscriptionPlan.update_stripe_plans
+    StripedRails::Coupon.update_stripe_coupons
   end
 end

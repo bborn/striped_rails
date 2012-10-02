@@ -1,0 +1,2 @@
+module StripedRails::PagesHelper
+end

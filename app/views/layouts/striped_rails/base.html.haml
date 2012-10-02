@@ -1,0 +1,26 @@
+!!! 5
+!= conditional_html do
+  %head
+    %meta{ charset: "utf-8" }
+    %meta{ 'http-equiv' => "X-UA-Compatible", content: "IE=edge,chrome=1" }
+    %title= "Brand: #{yield(:title)}"
+    %meta{ name: "description", content: "" }
+    %meta{ name: "author", content: "" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    = yield(:head_start)
+    = javascript_include_tag 'modernizr-2.5.0.min'
+    = stylesheet_link_tag "striped_rails/application", media: "all"
+    = javascript_include_tag "striped_rails/application"
+    = csrf_meta_tags
+    = yield(:head_finish)
+    = render 'shared/ga'
+  %body
+    = render 'shared/header'
+    .container-fluid
+      -flash.each do |name, msg|
+        %div{class: "alert alert-#{name == :notice ? 'success' : 'error'}"}
+          %a.close{data: {dismiss: "alert"}}= "x"
+          = msg
+      .row-fluid
+        .main.span12
+          = yield

@@ -1,0 +1,2 @@
+module StripedRails::SubscriptionPlansHelper
+end
