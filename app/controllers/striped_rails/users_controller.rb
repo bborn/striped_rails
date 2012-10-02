@@ -34,7 +34,7 @@ module StripedRails
     end
 
     def edit
-      @user = User.find(params[:id])
+      @user = StripedRails::Engine.user.find(params[:id])
     end
 
     def create_subscription
@@ -53,7 +53,7 @@ module StripedRails
     end
 
     def update
-      @user = User.find(params[:id])
+      @user = StripedRails::Engine.user.find(params[:id])
       @user.is_admin = params[:user].delete(:is_admin)
 
       respond_to do |format|
@@ -68,7 +68,7 @@ module StripedRails
     end
 
     def destroy
-      @user = User.find(params[:id])
+      @user = StripedRails::Engine.user.find(params[:id])
       @user.destroy
 
       respond_to do |format|

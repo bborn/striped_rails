@@ -24,5 +24,9 @@ module StripedRails
       # app.middleware.insert_after ActionDispatch::Static, ActionDispatch::Static, "#{root}/public"
     # end
 
+    def self.user
+      config.user_class.constantize
+    end
+
   end
 end

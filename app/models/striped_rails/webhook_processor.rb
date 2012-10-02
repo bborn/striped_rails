@@ -2,6 +2,8 @@ module StripedRails
   class WebhookProcessor
 
     def process(event)
+      user_klass = StripedRails::Engine.user
+
       data = JSON.parse(event) 
       eid = data["id"]
       trusted = Stripe::Event.retrieve(eid)
@@ -24,18 +26,18 @@ module StripedRails
       when "invoice.created"
         unless data.attempted
           unless data.lines.respond_to?(:invoiceitems)
-            @user = User.find_by_vault_token(data.customer)
+            @user = user_klass.find_by_vault_token(data.customer)
             @user.handle_overage
           end
         end
       when "invoice.payment_succeeded"
-        @user = User.find_by_vault_token(data.customer)
+        @user = user_klass.find_by_vault_token(data.customer)
         @user.deliver_invoice(data)
       when "invoice.payment_failed"
-        @user = User.find_by_vault_token(data.customer)
+        @user = user_klass.find_by_vault_token(data.customer)
         @user.deliver_invoice(data)
       when "customer.subscription.deleted"
-        @user = User.find_by_vault_token(data.customer)
+        @user = user_klass.find_by_vault_token(data.customer)
         @user.remove_subscription
       end
     end
