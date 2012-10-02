@@ -8,8 +8,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'unicorn', '4.2.0'
 
-  spec.add_dependency 'sqlite3'
-
   spec.add_dependency 'friendly_id', "4.0.0"
   spec.add_dependency 'draper', '0.10.0'
   spec.add_dependency 'stripe'
