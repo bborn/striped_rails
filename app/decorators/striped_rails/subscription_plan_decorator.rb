@@ -14,6 +14,10 @@ module StripedRails
       end
     end
 
+    def name_and_price
+      "#{name} (#{price})"
+    end
+
     def monthly_revenue
       h.number_to_currency(subscription_plan.monthly_revenue.to_f / 100)
     end

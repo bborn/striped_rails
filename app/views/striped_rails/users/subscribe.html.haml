@@ -12,7 +12,7 @@
       %legend= 'Account Information'
       
       = f.input :full_name, label: "Your name or company name", placeholder: "John Doe"
-      = f.input :subscription_plan_id, collection: @subscription_plans, label_method: :name, value_method: :id
+      = f.input :subscription_plan_id, collection: @subscription_plans, label_method: :name_and_price, value_method: :id, :include_blank => false
       = f.input :coupon_code, placeholder: "Have you found a coupon code?"
       = f.input :card_token, as: :hidden
     %fieldset

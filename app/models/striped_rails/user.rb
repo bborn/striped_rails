@@ -184,7 +184,7 @@ module StripedRails
 
 
     def update_stripe_customer
-      if email_changed? && !id_changed?
+      if email_changed? && !id_changed? && vault_token
         customer = Stripe::Customer.retrieve(vault_token)
         customer.email = email
         customer.save
