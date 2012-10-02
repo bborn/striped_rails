@@ -17,6 +17,7 @@ module StripedRails
     engine_name 'striped_rails'
 
     config.layout = "striped_rails/base"
+    config.user_class = "::User"
 
     # initializer "static assets" do |app|
       # app.middleware.use ActionDispatch::Static, "#{root}/public" # Old way, does not work in production

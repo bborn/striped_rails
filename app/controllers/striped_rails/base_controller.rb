@@ -32,7 +32,7 @@ module StripedRails
         if cu
           UserDecorator.decorate(cu)
         else
-          UserDecorator.decorate(::User.new)  
+          UserDecorator.decorate(StripedRails::Engine.config.user_class.constantize.new)  
         end
       end
 

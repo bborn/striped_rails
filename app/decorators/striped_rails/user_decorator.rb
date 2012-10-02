@@ -35,8 +35,6 @@ module StripedRails
         h.link_to 'This is your plan', h.profile_path, class: 'btn btn-success'
       elsif signed_in?
         h.link_to 'Switch to this plan', h.subscription_path(subscription_plan_id: subscription_plan.vault_token), method: 'put', :confirm => 'Are you sure you want to switch plans? Note, your next bill will be prorated.', class: 'btn btn-primary'
-      else
-        h.link_to 'Sign Up', h.sign_up_path(subscription_plan.vault_token), class: 'btn btn-primary'
       end
     end
 
@@ -44,8 +42,12 @@ module StripedRails
       if user.subscription_active?
         h.content_tag(:span, "You are currently on the #{current_subscription_plan_name} plan.", class: "label label-info")       
       else
-        h.content_tag(:span, "You are currently not under a plan.", class: "label label-important") +
-        h.content_tag(:p, h.link_to("Pick a Plan", h.available_subscription_plans_path, class: "btn btn-danger"))
+        h.content_tag(:span, "You are currently not subscribed.", class: "label label-important") +
+        if user.vault_token
+          h.content_tag(:p, h.link_to("Pick a Plan", h.available_subscription_plans_path, class: "btn btn-danger"))
+        else
+          h.content_tag(:p, h.link_to("Subscribe", h.subscribe_path, class: "btn btn-primary"))          
+        end
       end
     end
 
