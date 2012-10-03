@@ -31,15 +31,12 @@ Getting Started
 3. Create a .env file based on the sample.env.
 4. bundle install
 5. Add the following fields to your User model:
-  t.string :vault_token
-  t.references :subscription_plan
-  t.references :coupon
 
-  add_index :striped_rails_users, :email, :unique => true
-  add_index :striped_rails_users, :subscription_plan_id
-  add_index :striped_rails_users, :coupon_id
-  add_index :striped_rails_users, :vault_token
-  add_index :striped_rails_users, :created_at
+    t.string :full_name
+    t.string :vault_token
+    t.references :subscription_plan
+    t.references :coupon
+    t.boolean :admin, default: false
 
 6. Make your User model (or Person, or whatever you call it, include StripedRails::User)
 7. bundle exec rake db:migrate

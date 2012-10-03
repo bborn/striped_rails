@@ -1,4 +1,4 @@
-redis: redis-server 
+redis: redis-server
 web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
 worker: ./start_resque
 guard: bundle exec guard

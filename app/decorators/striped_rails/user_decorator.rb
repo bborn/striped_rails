@@ -1,6 +1,6 @@
 module StripedRails
   class UserDecorator < BaseDecorator
-    decorates :user
+    decorates :user, :class_name => StripedRails::Engine.config.user_class
 
     def signed_in?
       !model.new_record?

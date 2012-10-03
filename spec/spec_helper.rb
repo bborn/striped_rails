@@ -1,9 +1,21 @@
 require 'rubygems'
 require 'spork'
+require "database_cleaner"
+require 'factory_girl_rails'
+FactoryGirl.find_definitions
+
+require 'database_cleaner' 
+require 'capybara'
+require 'fakeweb'
+FakeWeb.allow_net_connect = false
+
+require 'rb-fsevent'
+require 'growl'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", __FILE__)
+  require File.expand_path("../dummy/config/environment", __FILE__)
+
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rspec'
@@ -16,7 +28,7 @@ Spork.prefork do
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
       # For test we will use Redis Database 2
-      REDIS.select 2
+      Resque.redis.select 2
       uri = URI.parse(ENV["REDISTOGO_URL"])
       Resque.redis = Redis.new(host: uri.host, port: uri.port, password: uri.password, db: 2)
     end
@@ -28,7 +40,7 @@ Spork.prefork do
       Resque.queues.each do |q|
         Resque.remove_queue(q)
       end
-      REDIS.flushdb
+      Resque.redis.flushdb
     end
     #Draper Fix
     config.treat_symbols_as_metadata_keys_with_true_values = true

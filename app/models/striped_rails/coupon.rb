@@ -13,7 +13,7 @@ module StripedRails
     validates_numericality_of :duration_in_months, allow_nil: true, only_integer: true, greater_than_or_equal_to: 0
     validates_numericality_of :max_redemptions, allow_nil: true, only_integer: true, greater_than_or_equal_to: 0
     validates_numericality_of :times_redeemed, allow_nil: true, only_integer: true, greater_than_or_equal_to: 0
-    has_many :users
+    has_many :users, :class_name => StripedRails::Engine.config.user_class
     has_many :coupon_subscription_plans, dependent: :destroy
     has_many :subscription_plans, through: :coupon_subscription_plans
     after_destroy :scrub_users

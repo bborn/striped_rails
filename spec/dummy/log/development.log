@@ -1,0 +1,129 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20121003132653)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "full_name" varchar(255), "vault_token" varchar(255), "subscription_plan_id" integer, "coupon_id" integer, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20121003132653')
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("users")
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "full_name" varchar(255), "vault_token" varchar(255), "subscription_plan_id" integer, "coupon_id" integer, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (1.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (2.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121003132653')
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20121003132653)
+Migrating to CreatePages (20121003141241)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "striped_rails_pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "slug" varchar(255), "content" text, "menu_order" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_pages")[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "index_striped_rails_pages_on_slug" ON "striped_rails_pages" ("slug")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_pages")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_striped_rails_pages_on_slug')
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_striped_rails_pages_on_menu_order" ON "striped_rails_pages" ("menu_order")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20121003141241')
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSubscriptionPlans (20121003141242)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "striped_rails_subscription_plans" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "vault_token" varchar(255), "name" varchar(255), "currency" varchar(255), "interval" varchar(255), "amount" integer DEFAULT 0, "trial_period_days" integer DEFAULT 0, "unit_name" varchar(255), "included_units" integer DEFAULT 0, "overage_price" integer DEFAULT 0, "description" text, "unavailable" boolean DEFAULT 'f', "users_count" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_subscription_plans")
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "index_striped_rails_subscription_plans_on_vault_token" ON "striped_rails_subscription_plans" ("vault_token")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_subscription_plans")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_subscription_plans_on_vault_token')[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_striped_rails_subscription_plans_on_amount" ON "striped_rails_subscription_plans" ("amount")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_subscription_plans")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_striped_rails_subscription_plans_on_amount')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_striped_rails_subscription_plans_on_vault_token')[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_striped_rails_subscription_plans_on_unavailable" ON "striped_rails_subscription_plans" ("unavailable")
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20121003141242')[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to CreateCoupons (20121003141243)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "striped_rails_coupons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coupon_code" varchar(255), "percent_off" integer DEFAULT 0, "duration" varchar(255), "duration_in_months" integer DEFAULT 0, "max_redemptions" integer DEFAULT 0, "times_redeemed" integer DEFAULT 0, "redeem_by" datetime, "users_count" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_coupons")[0m
+  [1m[35m (0.5ms)[0m  CREATE UNIQUE INDEX "index_striped_rails_coupons_on_coupon_code" ON "striped_rails_coupons" ("coupon_code")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_coupons")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_striped_rails_coupons_on_coupon_code')
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_striped_rails_coupons_on_redeem_by" ON "striped_rails_coupons" ("redeem_by")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20121003141243')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCouponSubscriptionPlans (20121003141244)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "striped_rails_coupon_subscription_plans" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coupon_id" integer, "subscription_plan_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_coupon_subscription_plans")
+  [1m[36m (2.2ms)[0m  [1mCREATE INDEX "by_cp_sub_plan_cp_id" ON "striped_rails_coupon_subscription_plans" ("coupon_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_coupon_subscription_plans")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('by_cp_sub_plan_cp_id')[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "by_cp_sub_plan_sub_plan_id" ON "striped_rails_coupon_subscription_plans" ("subscription_plan_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20121003141244')[0m
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_coupon_subscription_plans")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('by_cp_sub_plan_sub_plan_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('by_cp_sub_plan_cp_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_coupons")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_coupons_on_redeem_by')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_striped_rails_coupons_on_coupon_code')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_pages")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_striped_rails_pages_on_menu_order')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_pages_on_slug')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_subscription_plans")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_subscription_plans_on_unavailable')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_striped_rails_subscription_plans_on_amount')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_subscription_plans_on_vault_token')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("users")
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (2.3ms)[0m  [1mCREATE TABLE "striped_rails_coupon_subscription_plans" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coupon_id" integer, "subscription_plan_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("striped_rails_coupon_subscription_plans")
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "by_cp_sub_plan_cp_id" ON "striped_rails_coupon_subscription_plans" ("coupon_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_coupon_subscription_plans")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('by_cp_sub_plan_cp_id')[0m
+  [1m[35m (1.8ms)[0m  CREATE INDEX "by_cp_sub_plan_sub_plan_id" ON "striped_rails_coupon_subscription_plans" ("subscription_plan_id")
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "striped_rails_coupons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coupon_code" varchar(255), "percent_off" integer DEFAULT 0, "duration" varchar(255), "duration_in_months" integer DEFAULT 0, "max_redemptions" integer DEFAULT 0, "times_redeemed" integer DEFAULT 0, "redeem_by" datetime, "users_count" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_coupons")
+  [1m[36m (1.9ms)[0m  [1mCREATE UNIQUE INDEX "index_striped_rails_coupons_on_coupon_code" ON "striped_rails_coupons" ("coupon_code")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_coupons")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_coupons_on_coupon_code')[0m
+  [1m[35m (1.8ms)[0m  CREATE INDEX "index_striped_rails_coupons_on_redeem_by" ON "striped_rails_coupons" ("redeem_by")
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "striped_rails_pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "slug" varchar(255), "content" text, "menu_order" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_pages")
+  [1m[36m (1.8ms)[0m  [1mCREATE INDEX "index_striped_rails_pages_on_menu_order" ON "striped_rails_pages" ("menu_order")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_pages")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_pages_on_menu_order')[0m
+  [1m[35m (1.9ms)[0m  CREATE UNIQUE INDEX "index_striped_rails_pages_on_slug" ON "striped_rails_pages" ("slug")
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "striped_rails_subscription_plans" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "vault_token" varchar(255), "name" varchar(255), "currency" varchar(255), "interval" varchar(255), "amount" integer DEFAULT 0, "trial_period_days" integer DEFAULT 0, "unit_name" varchar(255), "included_units" integer DEFAULT 0, "overage_price" integer DEFAULT 0, "description" text, "unavailable" boolean DEFAULT 'f', "users_count" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_subscription_plans")
+  [1m[36m (1.9ms)[0m  [1mCREATE INDEX "index_striped_rails_subscription_plans_on_amount" ON "striped_rails_subscription_plans" ("amount")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("striped_rails_subscription_plans")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_subscription_plans_on_amount')[0m
+  [1m[35m (2.6ms)[0m  CREATE INDEX "index_striped_rails_subscription_plans_on_unavailable" ON "striped_rails_subscription_plans" ("unavailable")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("striped_rails_subscription_plans")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_striped_rails_subscription_plans_on_unavailable')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_striped_rails_subscription_plans_on_amount')[0m
+  [1m[35m (1.7ms)[0m  CREATE UNIQUE INDEX "index_striped_rails_subscription_plans_on_vault_token" ON "striped_rails_subscription_plans" ("vault_token")
+  [1m[36m (2.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "full_name" varchar(255), "vault_token" varchar(255), "subscription_plan_id" integer, "coupon_id" integer, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (2.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (1.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (2.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121003141244')
+  [1m[36m (2.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121003132653')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121003141241')
+  [1m[36m (2.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121003141242')[0m
+  [1m[35m (2.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121003141243')

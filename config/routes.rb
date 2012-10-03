@@ -1,6 +1,5 @@
 StripedRails::Engine.routes.draw do
-  mount Resque::Server, at: '/resque'
-
+  
   root to: 'pages#index'
 
   resources :users 
@@ -19,6 +18,7 @@ StripedRails::Engine.routes.draw do
       get :available
     end
   end
+  
   resources :coupons, only: [:index,:edit,:update]
   resources :coupon_subscription_plans, only: [:create,:destroy]
   resources :webhooks, only: :create
