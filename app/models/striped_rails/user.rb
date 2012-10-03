@@ -8,7 +8,8 @@ module StripedRails
       belongs_to :coupon, counter_cache: true, :class_name => "StripedRails::Coupon"
       after_save :update_stripe_customer
 
-      attr_accessible :email, :full_name, :password, :password_confirmation, :subscription_plan_id, :card_token, :coupon_code
+      attr_accessible :email, :full_name, :subscription_plan_id, :card_token, :coupon_code
+      validates :email, :presence => true
 
       attr_accessor :card_token
 

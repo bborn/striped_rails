@@ -1,8 +1,6 @@
 require 'spec_helper'
 require 'fakeweb'
   
-FakeWeb.allow_net_connect = false
-
 module StripedRails
   describe UserMailer do
     it "should email a thank you invoice with successful payment" do
