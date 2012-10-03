@@ -2,7 +2,7 @@ StripedRails::Engine.routes.draw do
   
   root to: 'pages#index'
 
-  resources :users 
+  resources :users
   
   get '/subscribe' => 'users#subscribe', :as => 'subscribe'
   post '/subscribe' => 'users#create_subscription', as: 'create_subscription'
