@@ -7,8 +7,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails', '3.2.8'
   spec.add_dependency 'bcrypt-ruby', '~> 3.0.0'
 
-  spec.add_dependency 'unicorn', '4.2.0'
-
   spec.add_dependency 'friendly_id', "4.0.0"
   spec.add_dependency 'draper', '0.10.0'
   spec.add_dependency 'stripe'
