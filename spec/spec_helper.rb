@@ -21,6 +21,9 @@ Spork.prefork do
   require 'capybara/rspec'
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   RSpec.configure do |config|
+
+    config.include StripedRails::Engine.routes.url_helpers
+
     config.mock_with :rspec
     # config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.use_transactional_fixtures = false
@@ -46,7 +49,7 @@ Spork.prefork do
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.before(:all, :draper_with_helpers) do
       c = ApplicationController.new
-      c.request = ActionDispatch::TestRequest.new
+      c.request = ActionDispatch::TestRequest.new(:host => 'test.host')
       c.set_current_view_context
     end
   end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module StripedRails
   describe SubscriptionPlanDecorator, :draper_with_helpers do
-    include Rails.application.routes.url_helpers
+    include StripedRails::Engine.routes.url_helpers
 
     describe "#price" do
       it "should provide the price in currency format" do

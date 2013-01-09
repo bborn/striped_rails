@@ -11,7 +11,7 @@ module StripedRails
           end).html_safe +
           (h.content_tag(:ul, class: 'dropdown-menu') do
             (pages.inject('') do |links, p|
-              links += h.content_tag(:li, h.link_to(p.title, p))
+              links += h.content_tag(:li, h.link_to(p.title, h.page_path(p)))
             end).html_safe
             # Check for admin here.
           end)

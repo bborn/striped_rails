@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.summary = "StripedRails"
   spec.authors = ["Me"]
 
-  spec.add_dependency 'rails', '3.2.8'
+  spec.add_dependency 'rails', '~> 3.2.0'
   spec.add_dependency 'bcrypt-ruby', '~> 3.0.0'
 
   spec.add_dependency 'unicorn', '4.2.0'
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'redis'
 
   spec.add_dependency 'resque'
-  spec.add_dependency 'sass-rails'  
+  spec.add_dependency 'sass-rails'
 
   spec.add_development_dependency 'sqlite3'
   spec.add_development_dependency 'rspec-rails', '2.8.1'

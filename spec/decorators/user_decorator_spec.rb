@@ -6,7 +6,7 @@ module StripedRails
 
     context "when session handling" do
       it "should not be signed_in? with a guest user" do
-        UserDecorator.decorate(User.new).signed_in?.should be_false
+        UserDecorator.decorate(StripedRails::Engine.user.new).signed_in?.should be_false
       end
 
       it "should be signed_in? with a real user" do
@@ -15,7 +15,7 @@ module StripedRails
       end
 
       it "should produce a link to sign_in with a guest user" do
-        UserDecorator.decorate(User.new).session_control.should include 'Sign In'
+        UserDecorator.decorate(StripedRails::Engine.user.new).session_control.should include 'Sign In'
       end
 
       it "should produce a link to sign_out with a real user" do
@@ -30,7 +30,7 @@ module StripedRails
 
       it "should produce a sign up button for subscription if not signed in" do
         subscription_plan = SubscriptionPlanDecorator.decorate(Factory(:subscription_plan))
-        UserDecorator.decorate(User.new).subscription_plan_button(subscription_plan).should include 'Sign Up'
+        UserDecorator.decorate(StripedRails::Engine.user.new).subscription_plan_button(subscription_plan).should include 'Sign Up'
       end
 
       it "should produce a switch button for a subscription if signed in" do

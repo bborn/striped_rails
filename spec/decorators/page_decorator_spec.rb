@@ -3,9 +3,9 @@ require 'spec_helper'
 module StripedRails
   
   describe PageDecorator, :draper_with_helpers do
-    include Rails.application.routes.url_helpers
 
     describe "#menu" do
+
       context "when we have 5 pages" do
         before :each do
           @pages = (1..5).map { PageDecorator.new(Factory(:page)) }
